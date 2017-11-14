@@ -21,10 +21,113 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
 
-        <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     </head>
     <body>
+        <!-- Login page -->
+        <div data-role="page" id="login">
+            <div data-role="header">
+                <h1>Login</h1>
+            </div>
+        
+            <div role="main" class="ui-content">
+                <form>
+                    <label for="login-username">Usuário:</label>
+                    <input type="text" name="login-username" id="login-username">
+                    <label for="login-password">Senha:</label>
+                    <input type="password" name="login-password" id="login-password">
+
+                    <!-- <button type="submit" data-theme="b">Entrar</button> -->
+                    <a data-role="button" data-theme="b" href="#status">Entrar</a>
+                    <a data-role="button" href="#popup-forgotpw" data-rel="popup">Esqueci minha senha</a>
+                    <div data-role="popup" id="popup-forgotpw" data-overlay-theme="b" data-position-to="window" data-transition="pop">
+                        <h3>Esqueceu sua senha?</h3>
+                        <p>Esse recurso ainda não foi implementado.</p>
+                        <p>Entre em contato com o administrador do sistema.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Status page -->
+        <div data-role="page" id="status">
+            <div data-role="header">
+                <h1>Status</h1>
+            </div>
+
+            <div role="main" class="ui-content">
+                
+            </div>
+
+            <div data-role="footer" data-id="footer-nav" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#status" class="ui-btn-active ui-state-persist" data-transition="none">Status</a></li>
+                        <li><a href="#messages" data-transition="none">Mensagens</a></li>
+                        <li><a href="#preferences" data-transition="none">Preferências</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages page -->
+        <div data-role="page" id="messages">
+            <div data-role="header">
+                <h1>Mensagens</h1>
+            </div>
+
+            <div role="main" class="ui-content">
+                Sem novas mensagens.
+            </div>
+
+            <div data-role="footer" data-id="footer-nav" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#status" data-transition="none">Status</a></li>
+                        <li><a href="#messages" class="ui-btn-active ui-state-persist" data-transition="none">Mensagens</a></li>
+                        <li><a href="#preferences" data-transition="none">Preferências</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preferences page -->
+        <div data-role="page" id="preferences">
+            <div data-role="header">
+                <h1>Preferências</h1>
+            </div>
+
+            <div role="main" class="ui-content">
+                <ul data-role="listview">
+                    <li><a href="#preferences-lab1" data-transition="slide">Laboratório 1</a></li>
+                    <li><a href="#" data-transition="slide">Laboratório 2</a></li>
+                    <li><a href="#" data-transition="slide">Laboratório 3</a></li>
+                    <li><a href="#" data-transition="slide">Laboratório 4</a></li>
+                </ul>
+            </div>
+
+            <div data-role="footer" data-id="footer-nav" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#status" data-transition="none">Status</a></li>
+                        <li><a href="#messages" data-transition="none">Mensagens</a></li>
+                        <li><a href="#preferences" class="ui-btn-active ui-state-persist" data-transition="none">Preferências</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div data-role="page" id="preferences-lab1">
+            <div data-role="header">
+                <a href="#preferences" data-rel="back" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">Voltar</a>
+                <h1>Laboratório 1</h1>
+            </div>
+
+            <div role="main" class="ui-content">
+                
+            </div>
+        </div>
     
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
