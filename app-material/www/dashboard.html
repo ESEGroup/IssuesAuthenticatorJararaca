@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="">
+    <!-- For Cordova use Please add the "Content-Security-Policy" meta -->
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"/>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/getmdl-select.min.css">
+    <title></title>
+</head>
+<body>
+  <script src="js/main.js"></script>
+
+  <!-- Simple header with fixed tabs. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Issues Authenticator</span>
+        
+      </div>
+      <!-- Tabs -->
+      <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+        <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Registro</a>
+        <a href="#fixed-tab-2" class="mdl-layout__tab">Notificações</a>
+        <a href="#fixed-tab-3" class="mdl-layout__tab">Preferências</a>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Menu</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="index.html"><i class="material-icons">face</i> Login</a>
+      <a class="mdl-navigation__link" href="dashboard.html"><i class="material-icons">dashboard</i> Início</a>
+      <a class="mdl-navigation__link" href="config.html"><i class="material-icons">build</i> Configurações</a>
+      <a class="mdl-navigation__link" href="versao.html"><i class="material-icons">refresh</i> Versão</a>
+    </nav>
+  </div>
+    <main class="mdl-layout__content">
+    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+      <div class="page-content">
+            <!-- Your content goes here -->
+            <form action="#">
+
+            <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-phone mdl-cell--8-col-tablet">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
+              <input class="mdl-textfield__input" type="text" id="laboratorio" value="Escolha o laboratório" readonly tabIndex="-1">
+              <label for="laboratorio">
+                  <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+              </label>
+              <label for="laboratorio" class="mdl-textfield__label">Laboratório</label>
+              <ul for="laboratorio" id="laboratorio_lista" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                  <li class="mdl-menu__item" data-val="DE">Escolha o laboratório</li>
+              </ul>
+            </div>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+            </div>
+
+            <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-phone mdl-cell--8-col-tablet">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="entrada()">
+                Registrar entrada
+              </button>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+            </div>
+
+            <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-phone mdl-cell--8-col-tablet">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="saida()">
+                Registrar saída
+              </button>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+            </div>
+            </form>    
+      </div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+      <div class="page-content">
+      <ul class="mdl-list" id="notificacoes_lista">
+      </ul>
+      <!-- Your content goes here -->
+
+      </div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+      <div class="page-content" id="preferencias_lista">
+      <!-- Your content goes here -->
+      </div>
+    </section>
+      
+    </main>
+  </div>
+
+  <script type='application/javascript'>select_nome_laboratorio();</script>
+  <script type='application/javascript'>notificacoes();</script>
+  <script type='application/javascript'>preferencias();</script>
+  <script src="js/jquery-2.2.0.min.js"></script>
+  <script type='application/javascript' src='js/fastclick.js'></script>
+  <script src="js/material.min.js"></script>
+  <script src="js/getmdl-select.min.js"></script>
+</body>
+</html>
