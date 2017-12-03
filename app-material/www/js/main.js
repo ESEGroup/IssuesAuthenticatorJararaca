@@ -1,6 +1,6 @@
 'use strict';
 
-var API_ENDPOINT = "https://issuesmonitoring.mdjunior.eng.br";
+var API_ENDPOINT = "http://104.236.209.84:8080";
 
 console.log("I'm here !");
 
@@ -8,23 +8,25 @@ console.log("I'm here !");
 var storage = window.localStorage;
 var API_ENDPOINT = storage.getItem("API_ENDPOINT"); // Pass a key name to get its value.
 if (storage.getItem("API_ENDPOINT") === null) {
-    API_ENDPOINT = "https://issuesmonitoring.mdjunior.eng.br";
+    API_ENDPOINT = "http://104.236.209.84:8080";
     storage.setItem("API_ENDPOINT", API_ENDPOINT);
 }
 console.log("API_ENDPOINT:" + API_ENDPOINT);
 
 function salvar() {
     var http = new XMLHttpRequest();
+    http.withCredentials = true;
 
     var username = document.getElementById("identificacao").value;
     var password = document.getElementById("senha").value;
     console.log("funcao=salvar param=identificacao valor=" + username);
     console.log("funcao=salvar param=senha valor=" + password);
 
-    http.open("POST",API_ENDPOINT + "/authenticator/entrada/", true, username, password);
+    http.open("GET",API_ENDPOINT + "/authenticator/preferencias", true, username, password);
+    http.responseType = 'json';
     http.send("");
     http.onload = function() {
-        if (http.status == 204) {
+        if (http.status == 200) {
             storage.setItem("USER", username);
             storage.setItem("PASS", password);
             console.log("funcao=salvar resulado=sucesso");
@@ -36,6 +38,27 @@ function salvar() {
             return http.status;
         }
     }
+}
+
+function verifica_credenciais_salvas() {
+
+    var div = document.getElementById("salvar_status");
+
+    if (storage.getItem("USER") === null) {
+        var texto = "<p>Seu usuário não está salvo ainda.</p>";
+        div.insertAdjacentHTML("beforeend", texto);
+    } else {
+        var texto = "<p>Seu usuário '" + storage.getItem("USER") + "' foi salvo.</p>";
+        div.insertAdjacentHTML("beforeend", texto);
+    }
+    if (storage.getItem("PASS") === null) {
+        var texto = "<p>Sua senha não está salva ainda.</p>";
+        div.insertAdjacentHTML("beforeend", texto);
+    } else {
+        var texto = "<p>Sua senha foi salvo.</p>";
+        div.insertAdjacentHTML("beforeend", texto);
+    }
+    return true;
 }
 
 
@@ -70,6 +93,9 @@ function entrada() {
         }
     }
 }
+
+
+
 
 function saida() {
     var http = new XMLHttpRequest();
