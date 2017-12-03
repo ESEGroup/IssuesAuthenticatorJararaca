@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="">
     <!-- For Cordova use Please add the "Content-Security-Policy" meta -->
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'http://104.236.209.84:8080'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"/>
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/material.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -36,8 +36,18 @@
     <main class="mdl-layout__content">
         <div class="page-content">
           <!-- Your content goes here -->
+          <div class="mdl-grid">
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-phone mdl-cell--6-col-tablet" id="salvar_status">
+          <p>
+          Olá, bem-vindo ao Issues Authenticator. Nessa tela você deve inserir seu usuário e senha para validar suas credenciais.
+          </p>
+          </div>
+          <div class="mdl-layout-spacer"></div>
+          </div>
+
           <form action="#">
-          
+
           <div class="mdl-grid">
           <div class="mdl-layout-spacer"></div>
           <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-phone mdl-cell--6-col-tablet">
@@ -79,5 +89,6 @@
   <script src="js/jquery-2.2.0.min.js"></script>
   <script type='application/javascript' src='js/fastclick.js'></script>
   <script src="js/material.min.js"></script>
+  <script type='application/javascript'>verifica_credenciais_salvas();</script>
 </body>
 </html>
