@@ -2,3 +2,14 @@
     padding: .5em;
     max-width: 340px;
 }
+
+.notification {
+    border: 1px solid #ddd;
+    margin: 10pt auto;
+    padding: 5pt;
+}
+
+.notification h4, .notification p {
+    padding: 0;
+    margin: 0;
+}

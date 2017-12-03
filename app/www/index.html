@@ -11,7 +11,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' http://104.236.209.84:8080; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -39,54 +39,80 @@
                     <input type="password" name="login-password" id="login-password">
 
                     <!-- <button type="submit" data-theme="b">Entrar</button> -->
-                    <a data-role="button" data-theme="b" href="#status">Entrar</a>
+                    <a data-role="button" data-theme="b" id="login-submit" href="#">Entrar</a>
                     <a data-role="button" href="#popup-forgotpw" data-rel="popup">Esqueci minha senha</a>
                     <div data-role="popup" id="popup-forgotpw" data-overlay-theme="b" data-position-to="window" data-transition="pop">
                         <h3>Esqueceu sua senha?</h3>
                         <p>Esse recurso ainda não foi implementado.</p>
                         <p>Entre em contato com o administrador do sistema.</p>
                     </div>
+                    <div data-role="popup" id="popup-login-error" data-overlay-theme="b" data-position-to="window" data-transition="pop">
+                        <h3>Falha na autenticação</h3>
+                        <p id="popup-login-error-msg">Senha incorreta.</p>
+                    </div>
                 </form>
             </div>
         </div>
 
         <!-- Status page -->
-        <div data-role="page" id="status">
+        <div data-role="page" id="start">
             <div data-role="header">
-                <h1>Status</h1>
+                <h1>Início</h1>
             </div>
 
             <div role="main" class="ui-content">
-                
+                <p id="start-lab-detected">Iniciando...</p>
+                <form>
+                    <label for="select-lab">Laboratório:</label>
+                    <select name="select-lab" id="select-lab">
+                        <option value="1">Laboratório 1</option>
+                        <option value="2">Laboratório 2</option>
+                        <option value="3">Laboratório 3</option>
+                        <option value="4">Laboratório 4</option>
+                    </select>
+
+                    <button id="start-btn-in" class="ui-btn ui-corner-all">Registrar entrada</button>
+                    <button id="start-btn-out" class="ui-btn ui-corner-all">Registrar saída</button>
+
+                    <div data-role="popup" id="popup-in-success" data-overlay-theme="b" data-position-to="window" data-transition="pop">
+                        <h3>Entrada</h3>
+                        <p>Entrada registrada com sucesso.</p>
+                    </div>
+
+                    <div data-role="popup" id="popup-out-success" data-overlay-theme="b" data-position-to="window" data-transition="pop">
+                        <h3>Saída</h3>
+                        <p>Saída registrada com sucesso.</p>
+                    </div>
+                </form>
             </div>
 
             <div data-role="footer" data-id="footer-nav" data-position="fixed">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#status" class="ui-btn-active ui-state-persist" data-transition="none">Status</a></li>
-                        <li><a href="#messages" data-transition="none">Mensagens</a></li>
-                        <li><a href="#preferences" data-transition="none">Preferências</a></li>
+                        <li><a href="#start" class="ui-btn-active ui-state-persist ui-btn-icon-top ui-nodisc-icon ui-alt-icon ui-icon-home" data-transition="none">Início</a></li>
+                        <li><a href="#notifications" class="ui-btn-icon-top ui-nodisc-icon ui-alt-icon ui-icon-mail" data-transition="none">Notificações</a></li>
+                        <li><a href="#preferences" class="ui-btn-icon-top ui-nodisc-icon ui-alt-icon ui-icon-gear" data-transition="none">Preferências</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Messages page -->
-        <div data-role="page" id="messages">
+        <!-- notifications page -->
+        <div data-role="page" id="notifications">
             <div data-role="header">
-                <h1>Mensagens</h1>
+                <h1>Notificações</h1>
             </div>
 
-            <div role="main" class="ui-content">
-                Sem novas mensagens.
+            <div role="main" class="ui-content" id="notifications-content">
+
             </div>
 
             <div data-role="footer" data-id="footer-nav" data-position="fixed">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#status" data-transition="none">Status</a></li>
-                        <li><a href="#messages" class="ui-btn-active ui-state-persist" data-transition="none">Mensagens</a></li>
-                        <li><a href="#preferences" data-transition="none">Preferências</a></li>
+                        <li><a href="#start" class="ui-btn-icon-top ui-nodisc-icon ui-alt-icon ui-icon-home" data-transition="none">Início</a></li>
+                        <li><a href="#notifications" class="ui-btn-active ui-state-persist ui-btn-icon-top ui-nodisc-icon ui-alt-icon ui-icon-mail" data-transition="none">Notificações</a></li>
+                        <li><a href="#preferences" class="ui-btn-icon-top ui-nodisc-icon ui-alt-icon ui-icon-gear" data-transition="none">Preferências</a></li>
                     </ul>
                 </div>
             </div>
@@ -99,33 +125,24 @@
             </div>
 
             <div role="main" class="ui-content">
-                <ul data-role="listview">
+                <ul data-role="listview" data-inset="true" id="preferences-labs">
                     <li><a href="#preferences-lab1" data-transition="slide">Laboratório 1</a></li>
                     <li><a href="#" data-transition="slide">Laboratório 2</a></li>
                     <li><a href="#" data-transition="slide">Laboratório 3</a></li>
                     <li><a href="#" data-transition="slide">Laboratório 4</a></li>
                 </ul>
+
+                <button id="preferences-end-session" class="ui-btn ui-corner-all">Encerrar sessão</button>
             </div>
 
             <div data-role="footer" data-id="footer-nav" data-position="fixed">
                 <div data-role="navbar">
                     <ul>
-                        <li><a href="#status" data-transition="none">Status</a></li>
-                        <li><a href="#messages" data-transition="none">Mensagens</a></li>
-                        <li><a href="#preferences" class="ui-btn-active ui-state-persist" data-transition="none">Preferências</a></li>
+                        <li><a href="#start" class="ui-btn-icon-top ui-nodisc-icon ui-alt-icon ui-icon-home" data-transition="none">Início</a></li>
+                        <li><a href="#notifications" class="ui-btn-icon-top ui-nodisc-icon ui-alt-icon ui-icon-mail" data-transition="none">Notificações</a></li>
+                        <li><a href="#preferences" class="ui-btn-active ui-state-persist ui-btn-icon-top ui-nodisc-icon ui-alt-icon ui-icon-gear" data-transition="none">Preferências</a></li>
                     </ul>
                 </div>
-            </div>
-        </div>
-
-        <div data-role="page" id="preferences-lab1">
-            <div data-role="header">
-                <a href="#preferences" data-rel="back" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">Voltar</a>
-                <h1>Laboratório 1</h1>
-            </div>
-
-            <div role="main" class="ui-content">
-                
             </div>
         </div>
     

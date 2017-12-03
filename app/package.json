@@ -11,14 +11,17 @@
   "license": "UNLICENSED",
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "com.pylonproducts.wifiwizard": {}
     },
     "platforms": [
       "android"
     ]
   },
   "dependencies": {
+    "cordova-android": "~6.3.0",
     "cordova-plugin-whitelist": "^1.3.3",
-    "cordova-android": "~6.3.0"
+    "wifiwizard": "^0.2.11",
+    "com.pylonproducts.wifiwizard": "~0.2.11"
   }
 }
