@@ -310,7 +310,7 @@ function onDeviceReady() {
             var temp_min = parseInt($(e.target['temperature-min']).val());
             var temp_max = parseInt($(e.target['temperature-max']).val());
             var humid_min = parseInt($(e.target['humidity-min']).val());
-            var humid_max = parseInt($(e.target['humidity-min']).val());
+            var humid_max = parseInt($(e.target['humidity-max']).val());
             var obj = {
                 'temperatura_min': temp_min,
                 'temperatura_max': temp_max,
